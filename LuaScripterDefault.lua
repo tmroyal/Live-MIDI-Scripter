@@ -17,7 +17,7 @@ end
 function scheduled(bars, beat, fraction)
   -- play_note(60, 80, 50)
   log('event')
-  schedule(100)
+  schedule(1000)
 end
 
 function noteon(number, vel)
@@ -45,7 +45,7 @@ end
 --
 
 function held_notes(...)
-  if arg[0] ~= -1 then
+  if arg[1] ~= -1 then
     current_held = arg
   else
     current_held = {}
@@ -68,7 +68,7 @@ end
 
 -- eg namemidi('C#4')
 function namemidi(name)
-  if string.len(name) < 2: return 60
+  if string.len(name) < 2 then return 60 end
 
   name = string.lower(name)
 
@@ -110,3 +110,5 @@ end
 function log(message)
   outlet(0, {'log', message})
 end
+
+
