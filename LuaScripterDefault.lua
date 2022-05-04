@@ -66,39 +66,6 @@ function beatms(n_beats)
   return 1000*n_beats*seconds_per_beat
 end
 
--- eg namemidi('C#4')
-function namemidi(name)
-  if string.len(name) < 2 then return 60 end
-
-  name = string.lower(name)
-
-  local notes = {
-    c = 0, d = 2, e = 4, f = 5, g = 7, a = 9, b = 11
-  }
-
-  name = notes[string.sub(inNote,1,1)]
-  mod = string.sub(inNote, 2, 2)
-  oct = string.sub(inNote, -1, -1):match('^%-?%d+$')
-
-  if name == nil then
-    name = 0
-  end
-
-  if oct == nil then
-    oct = 5
-  else
-    oct = tonumber(oct) + 1
-  end
-
-  if mod == '#' then
-    name = name + 1
-  elseif mod == 'b' then
-    name = name - 1
-  end
-
-  return name + oct*12
-end
-
 function play_note(number, vel, dur_ms)
     outlet(0, {'note', number, vel, dur_ms})
 end

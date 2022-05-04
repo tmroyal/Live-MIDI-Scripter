@@ -64,7 +64,6 @@ function createNew(){
 }
 
 function createpath(path){
-	
 	var copyerror = copyFile(defaultFilePath, path);
 	
 	if (copyerror){
@@ -85,7 +84,7 @@ function copyCurrent(){
 }
 
 function copytopath(path){
-	if (storedPath == path){ post('sp\n'); return; }
+	if (storedPath == path){ return; }
 		
 	var copyerror = copyFile(storedPath, path);
 	if (copyerror){
@@ -150,6 +149,10 @@ function fileExists(path){
 
 // returns error if unsuccessful, otherwise, undefined
 function copyFile(fromPath, toPath){
+	if (fileExists(toPath)){
+		return 'Cannot overwrite existing file';
+	}
+	
 	var fromFile = new File(fromPath, "read");
 	
 	fromFile.open();
