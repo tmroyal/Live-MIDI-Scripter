@@ -14,12 +14,6 @@ function metro_tick(bars, beat, fraction)
   -- play_note(60, 80, 50)
 end
 
-function scheduled(bars, beat, fraction)
-  -- play_note(60, 80, 50)
-  log('event')
-  schedule(1000)
-end
-
 function noteon(number, vel)
   -- do things with incoming notes
 end
@@ -43,6 +37,19 @@ end
 -- The below functions comprise a number of helper functions. Delete at 
 -- your own risk.
 --
+local scheduled_cbs = {}
+local cb_ind = 1
+
+function schedule(cb, delay)
+  scheduled_cbs[cb_ind] = cb
+  send_delay(cb_ind, delay)
+  cb_ind = cb_ind + 1
+end
+
+function scheduled(num)
+  scheduled_cbs[num]()
+  scheduled_cbs[num] = nil
+end
 
 function held_notes(...)
   if arg[1] ~= -1 then
@@ -70,8 +77,8 @@ function play_note(number, vel, dur_ms)
     outlet(0, {'note', number, vel, dur_ms})
 end
 
-function schedule(dur)
-  outlet(0, {'schedule', dur})
+function send_delay(cb_ind, del)
+  outlet(0, {'schedule', cb_ind, del })
 end
 
 function log(message)
