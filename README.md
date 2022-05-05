@@ -10,7 +10,7 @@ file io, and some other basic functionality. Currently, this work is in an alpha
 
 Max for Live is a fair "scripting" environment, but I wanted the ability to use text to express music. 
 
-jit.gl.lua runs on the high priority queue in Max unlike the js object, which results in audible delays when used.
+jit.gl.lua is rumored to run on the high priority queue in Max unlike the js object.
 
 Node for Max has latency issues dealing with IPC. 
 
@@ -23,4 +23,4 @@ from the plugin.
 There are other strange bugs that occur dealing with file i/o. A lot of this is due to Max's inability to handle file i/o. It is often 
 best to copy files yourself and only create new files or open files from the plugin. It is best to not overwrite files using the plugin. 
 
-Software is provided as is without warranty.
+Software is provided as is, without warranty.
