@@ -11,11 +11,14 @@ local current_held = {}
 -- this method is called when metro is enabled
 -- it is called at the interval specified
 function metro_tick(bars, beat, fraction)
-  -- play_note(60, 80, 50)
+    -- play_note(60, 80, 50)
 end
 
 function noteon(number, vel)
-  -- do things with incoming notes
+    -- do things with incoming notes
+end
+
+function buttons(number)
 end
 
 function fdial(index, val)
