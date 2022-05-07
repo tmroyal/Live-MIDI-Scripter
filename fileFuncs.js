@@ -10,7 +10,7 @@ var storedPath;
 var defaultFilePath = '';
 var initFinished = false;
 
-var defaultFile = jsarguments[1] || 'LuaScripterDefault.lua';
+var defaultFile = jsarguments[1] || 'LuaLiveScripterDefault.lua';
 var loadMsg = (jsarguments[2] || 'LuaLiveScripter');
 
 // initialization
@@ -34,7 +34,7 @@ function patcherpath(path){
 
 function startup(){
 	messageOut(loadMsg);
-	messageOut(' ');
+	messageOut('----');
 }
 
 // ui functions
