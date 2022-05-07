@@ -10,6 +10,9 @@ var storedPath;
 var defaultFilePath = '';
 var initFinished = false;
 
+var defaultFile = jsarguments[1] || 'LuaScripterDefault.lua';
+var loadMsg = (jsarguments[2] || 'LuaLiveScripter');
+
 // initialization
 function storedfile(path){
 	if (path && path !== 'null' && path !== 0){
@@ -23,15 +26,15 @@ function storedfile(path){
 
 function patcherpath(path){
 	patcherPath = path;
-	defaultFilePath = patcherPath +  'LuaScripterDefault.lua';
+	defaultFilePath = patcherPath +  defaultFile;
 	if (!fileExists(defaultFilePath)){
 		showError('Default file does not exist');
 	}
 }
 
 function startup(){
-	messageOut('Welcome to Lua Scripter');
-	messageOut('-----------------------');
+	messageOut(loadMsg);
+	messageOut(' ');
 }
 
 // ui functions
@@ -70,7 +73,7 @@ function createpath(path){
 		showError(copyerror);
 		return;
 	}
-	readLuaScript(path);
+	readScript(path);
 	storePath(path);
 	messageOut('File created '+path);	
 }
@@ -93,7 +96,7 @@ function copytopath(path){
 	}
 	
 	messageOut('File opened' + path);
-	readLuaScript(path);
+	readScript(path);
 	storePath(path);
 }
 
@@ -103,11 +106,21 @@ function openExisting(){
 
 function openpath(path){
 	if(fileExists(path)){
-		readLuaScript(path);
+		readScript(path);
 		storePath(path);
 		messageOut('File opened'+ path);
 	} else {
 		showError('File does not exist: ' + path);
+	}
+}
+
+// print path
+
+function ppath(){
+	if (!storedPath){
+		messageOut('No stored path');
+	} else {
+		messageOut(storedPath);
 	}
 }
 
@@ -131,7 +144,7 @@ function storePath(path){
 	outlet(FILENAME_OUT, path);
 }
 
-function readLuaScript(path){
+function readScript(path){
 	outlet(SCRIPT_OUT, path);
 }
 
