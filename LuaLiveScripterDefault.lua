@@ -90,11 +90,11 @@ function log(message)
   end
 
   if type(message) == 'table' then
-	table.insert(message, 1, 'log')
-	if table.getn(message) == 1 then
-		table.insert(message, 2, '[empty]')
-	end
-	outlet(0, message)
+    table.insert(message, 1, 'log')
+    if table.getn(message) == 1 then
+      table.insert(message, 2, '[empty]')
+    end
+    outlet(0, message)
   else
   	outlet(0, {'log', message})
   end
